@@ -56,7 +56,7 @@
 !**********************************************************************!
 !**********************************************************************!
 MODULE CellSlicer
-
+  use omp_lib
   implicit none
   
   SAVE
@@ -4877,7 +4877,7 @@ end subroutine CS_GETSLICE_POT
 subroutine CS_GETSLICE_POT2(nslc, nx, ny, nrx, nry, nfl, ndw, wl, pot, nerr)
 
   implicit none
-  
+
   integer*4, intent(in) :: nslc, nx, ny, nrx, nry, nfl, ndw
   real*4, intent(in) :: wl
   integer*4, intent(inout) :: nerr
@@ -5015,6 +5015,8 @@ subroutine CS_GETSLICE_POT2(nslc, nx, ny, nrx, nry, nfl, ndw, wl, pot, nerr)
   ia2 = 0
   !
   call CS_PROG_START(na,1.0)
+  !$OMP PARALLEL
+  write(*,*) "Hello"
   !
   do ia=1, na ! loop ia over all atoms in slice
     !
@@ -5067,6 +5069,7 @@ subroutine CS_GETSLICE_POT2(nslc, nx, ny, nrx, nry, nfl, ndw, wl, pot, nerr)
     call CS_PROG_UPDATE(ia)
       !
   end do ! loop ia over all atoms in slice
+  !$OMP END PARALLEL
   !
   call CS_PROG_STOP(na)
   !

@@ -1,10 +1,10 @@
 # MAKEFILE for compiling and linking celslc
 # Defining variables
 f90comp = ifort
-switch3 = -nologo -O3 -recursive -132 -assume byterecl -threads -static-intel
-switch2 = -nologo -O2 -recursive -132 -assume byterecl -threads -static-intel
-switch1 = -nologo -O1 -recursive -132 -assume byterecl -threads -static-intel
-switch0 = -nologo -O0 -recursive -132 -assume byterecl -threads -static-intel
+switch3 = -nologo -O3 -p -g -debug all -recursive -132 -assume byterecl -threads -static-intel -qopenmp
+switch2 = -nologo -O2 -p -g -debug all -recursive -132 -assume byterecl -threads -static-intel -qopenmp
+switch1 = -nologo -O1 -p -g -debug all -recursive -132 -assume byterecl -threads -static-intel -qopenmp
+switch0 = -nologo -O0 -p -g -debug all -recursive -132 -assume byterecl -threads -static-intel -qopenmp
 # removed switches
 #	 -libs:static ???
 # Start of the makefile

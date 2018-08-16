@@ -555,7 +555,7 @@ subroutine M3D_FFT2D(dat, nx, ny, nft, dir)
   i = 0
   select case (nft)
   case (128)
-    call ODDCC128S(dat,nx,ny,direction)
+    call ODDCC128S(dat,nx,ny,direction)      
     i = nft
   case (256)
     call ODDCC256S(dat,nx,ny,direction)
@@ -1622,7 +1622,7 @@ subroutine M3D_DiffractionFilter(nautoap, nbuni, buniv)
   sz = 1.0 / ssz
   
   ! forward fourier transform
-  call M3D_FFT3D(M3D_pot, cpotft, M3D_n1, M3D_n2, M3D_n3, 'FORWARD')
+  call M3D_FFT3D(M3D_pot, cpotft, M3D_n1, M3D_n2, M3D_n3, 'FORWARD' )
   
   if (nautoap/=0) then ! apply auto aperture
     call M3D_ApplyDiffApAuto(cpotft, M3D_n1, M3D_n2, M3D_n3, sx, sy, sz)
@@ -1633,7 +1633,7 @@ subroutine M3D_DiffractionFilter(nautoap, nbuni, buniv)
   end if
   
   ! backward fourier transform
-  call M3D_FFT3D(M3D_pot, cpotft, M3D_n1, M3D_n2, M3D_n3, 'BACKWARD')
+  call M3D_FFT3D(M3D_pot, cpotft, M3D_n1, M3D_n2, M3D_n3, 'BACKWARD' )
   
   deallocate(cpotft, stat=nalloc)
   if (nalloc/=0) goto 116
