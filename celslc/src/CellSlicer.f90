@@ -5016,8 +5016,7 @@ subroutine CS_GETSLICE_POT2(nslc, nx, ny, nrx, nry, nfl, ndw, wl, pot, nerr)
   !
   call CS_PROG_START(na,1.0)
   !$OMP PARALLEL
-  write(*,*) "Hello"
-  !
+  !$omp parallel do reduction(+:lcw)
   do ia=1, na ! loop ia over all atoms in slice
     !
     ja = CS_slcatacc(ia,nslc)               ! get atom index in super cell
@@ -5064,13 +5063,14 @@ subroutine CS_GETSLICE_POT2(nslc, nx, ny, nrx, nry, nfl, ndw, wl, pot, nerr)
                        &       + lxy(2,ia)*CS_scagn(1:ny,1:nx,2) ) ! * translation phase factor
       end if
     end if
-    !
+
     ! update progress indicator
     call CS_PROG_UPDATE(ia)
       !
   end do ! loop ia over all atoms in slice
+  !$omp end parallel do
   !$OMP END PARALLEL
-  !
+
   call CS_PROG_STOP(na)
   !
   ! transform back to real space

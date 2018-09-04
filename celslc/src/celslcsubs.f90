@@ -165,11 +165,11 @@ end subroutine PostMessage
 !**********************************************************************!
 !**********************************************************************!
 subroutine PostRuntime(sinfo)
-!
-! Posts a run-time message with "sinfo" as add text and
-!
-! INPUT:
-!   character(len=*) :: sinfo = add info
+  !
+  ! Posts a run-time message with "sinfo" as add text and
+  !
+  ! INPUT:
+  !   character(len=*) :: sinfo = add info
 
   use celslcprm
   
@@ -236,7 +236,7 @@ subroutine PostCellInfo()
   
   write(unit=smsg,fmt='("Total number of atoms in super-cell: ",I5)') CS_numat
   call PostMessage(trim(smsg))
-    
+
   return
 
 end subroutine PostCellInfo
@@ -339,39 +339,39 @@ end subroutine CheckCell
 !**********************************************************************!
 !**********************************************************************!
 FUNCTION factorial(n)
-! function: calculates the factorial of n -> n!
+  ! function: calculates the factorial of n -> n!
 ! -------------------------------------------------------------------- !
-! parameter: integer*4 :: n
-!            
+  ! parameter: integer*4 :: n
+  !            
 ! -------------------------------------------------------------------- !
 
   implicit none
 
-! ------------
-! declaration
+  ! ------------
+  ! declaration
   integer*4 :: factorial
   integer*4, intent(in) :: n
   integer*4 :: i
-! ------------
+  ! ------------
 
-! ------------
-! init
-!  write(unit=stdout,fmt=*) " > factorial: INIT."
+  ! ------------
+  ! init
+  !  write(unit=stdout,fmt=*) " > factorial: INIT."
   factorial = 0 ! precheck default -> this means ERROR!
   if (n<0) return
   factorial = 1 ! postcheck default -> this means NO ERROR!
   i=2
-! ------------
+  ! ------------
 
-! ------------
+  ! ------------
   do while (n>=i)
     factorial = factorial * i
     i = i + 1
   end do
-! ------------
+  ! ------------
 
-! ------------
-!  write(unit=stdout,fmt=*) " > factorial: EXIT."
+  ! ------------
+  !  write(unit=stdout,fmt=*) " > factorial: EXIT."
   return
 
 END FUNCTION factorial
@@ -382,32 +382,32 @@ END FUNCTION factorial
 !**********************************************************************!
 !**********************************************************************!
 FUNCTION binomial(n,k)
-! function: calculates the binomial coefficient of (n over k), which is
-!           equal to (n!)/( (n-k)! * k! )
+  ! function: calculates the binomial coefficient of (n over k), which is
+  !           equal to (n!)/( (n-k)! * k! )
 ! -------------------------------------------------------------------- !
-! parameter: integer*4 :: n,k
-!            
+  ! parameter: integer*4 :: n,k
+  !            
 ! -------------------------------------------------------------------- !
 
   implicit none
 
-! ------------
-! declaration
+  ! ------------
+  ! declaration
   integer*4 :: binomial
   integer*4, intent(in) :: n, k
   integer*4, external :: factorial
-! ------------
+  ! ------------
 
-! ------------
-! init
-!  write(unit=stdout,fmt=*) " > binomial: INIT."
+  ! ------------
+  ! init
+  !  write(unit=stdout,fmt=*) " > binomial: INIT."
   binomial = 0 ! precheck default -> this means ERROR!
   if (n<0.or.k<0.or.n<k) return
   binomial = factorial(n)/( factorial(n-k) * factorial(k) )
-! ------------
+  ! ------------
 
-! ------------
-!  write(unit=stdout,fmt=*) " > binomial: EXIT."
+  ! ------------
+  !  write(unit=stdout,fmt=*) " > binomial: EXIT."
   return
 
 END FUNCTION binomial
@@ -420,30 +420,30 @@ END FUNCTION binomial
 !**********************************************************************!
 !**********************************************************************!
 FUNCTION sigmoid(x,x0,dx)
-! function: 0.5*(tanh((x-x0)/dx)+1)
+  ! function: 0.5*(tanh((x-x0)/dx)+1)
 ! -------------------------------------------------------------------- !
-! parameter: all real*4
-!            
+  ! parameter: all real*4
+  !            
 ! -------------------------------------------------------------------- !
 
   implicit none
 
-! ------------
-! declaration
+  ! ------------
+  ! declaration
   real*4 :: sigmoid
   real*4, intent(in) :: x, x0, dx
-! ------------
+  ! ------------
 
-! ------------
-! init
-!  write(unit=stdout,fmt=*) " > sigmoid: INIT."
+  ! ------------
+  ! init
+  !  write(unit=stdout,fmt=*) " > sigmoid: INIT."
   sigmoid = 0.5*(tanh((x-x0)/dx)+1.0)
-! ------------
+  ! ------------
 
 
 
-! ------------
-!  write(unit=stdout,fmt=*) " > sigmoid: EXIT."
+  ! ------------
+  !  write(unit=stdout,fmt=*) " > sigmoid: EXIT."
   return
 
 END FUNCTION sigmoid
@@ -454,7 +454,7 @@ END FUNCTION sigmoid
 
 !**********************************************************************!
 SUBROUTINE UPPERCASE(strin, strout)
-  
+
   implicit none
   
   character(len=*), intent(in) :: strin
@@ -481,7 +481,7 @@ END SUBROUTINE UPPERCASE
 
 !**********************************************************************!
 SUBROUTINE LOWERCASE(strin, strout)
-  
+
   implicit none
   
   character(len=*), intent(in) :: strin
@@ -575,9 +575,9 @@ subroutine ParseCommandLine()
   real*4, external :: HT2WL
   character(len=512) :: smsg
 
-! ------------
-! initialize
-!  write(unit=stdout,fmt=*) " > ParseCommandLine: INIT."
+  ! ------------
+  ! initialize
+  !  write(unit=stdout,fmt=*) " > ParseCommandLine: INIT."
   i = 0
   cnt = command_argument_count()
   if (cnt==0) then
@@ -609,41 +609,41 @@ subroutine ParseCommandLine()
   buni = 0
   buniv = 0.0
   block = 0
-  bloh = 0.0
-  blok = 0.0
-  blol = 0.0
-  blyh = 0.0
-  blyk = 0.0
-  blyl = 0.0
-  blsa = 0.0
-  blsb = 0.0
-  blsc = 0.0
-  ntla = 0
-  tlax = 0.0
-  tlay = 0.0
-  tlaz = 0.0
-  csprm_runtimes=0
-  nffdec = 0
-  nf2dec = 0
+    bloh = 0.0
+    blok = 0.0
+    blol = 0.0
+    blyh = 0.0
+    blyk = 0.0
+    blyl = 0.0
+    blsa = 0.0
+    blsb = 0.0
+    blsc = 0.0
+    ntla = 0
+    tlax = 0.0
+    tlay = 0.0
+    tlaz = 0.0
+    csprm_runtimes=0
+    nffdec = 0
+    nf2dec = 0
 
-! ------------
-! LOOP OVER ALL GIVEN ARGUMENTS
-  do
-    i = i + 1
-    if (i>cnt) exit
-    
-    call get_command_argument (i, buffer, len, status)
-    if (status/=0) then
-      call ExplainUsage()
-      call CriticalError("Command line parsing error.")
-    end if
-    
-    ! CHECK COMMAND
-    nfound = 0
-    cmd = buffer(1:len)
-    CHECK_COMMAND: select case (cmd(1:len))
-    
-    ! THE STRUCTURE PARAMETER FILE
+    ! ------------
+    ! LOOP OVER ALL GIVEN ARGUMENTS
+    do
+      i = i + 1
+      if (i>cnt) exit
+
+      call get_command_argument (i, buffer, len, status)
+      if (status/=0) then
+        call ExplainUsage()
+        call CriticalError("Command line parsing error.")
+      end if
+
+      ! CHECK COMMAND
+      nfound = 0
+      cmd = buffer(1:len)
+      CHECK_COMMAND: select case (cmd(1:len))
+
+      ! THE STRUCTURE PARAMETER FILE
     case ("-cel") ! CEL input
       nfound = 1
       i = i + 1
@@ -682,8 +682,8 @@ subroutine ParseCommandLine()
       end if
       nfin = 1
       nprm = 1
-    
-    ! THE OUTPUT FILE
+
+      ! THE OUTPUT FILE
     case ("-slc")
       nfound = 1
       i = i + 1
@@ -698,8 +698,8 @@ subroutine ParseCommandLine()
       end if
       write(unit = sslcfile, fmt='(A)') buffer(1:len)
       nout = 1
-    
-    ! THE TEM HIGH-TENSION VALUE IN KILOVOLTS  
+
+      ! THE TEM HIGH-TENSION VALUE IN KILOVOLTS  
     case ("-ht")
       nfound = 1
       i = i + 1
@@ -720,7 +720,7 @@ subroutine ParseCommandLine()
       wl = HT2WL(ht)
       nht = 1
       
-    ! THE HOR DISRETIZATION
+      ! THE HOR DISRETIZATION
     case ("-nx")
       nfound = 1
       i = i + 1
@@ -740,7 +740,7 @@ subroutine ParseCommandLine()
       end if
       nnx = 1
       
-    ! THE VER DISRETIZATION
+      ! THE VER DISRETIZATION
     case ("-ny")
       nfound = 1
       i = i + 1
@@ -760,7 +760,7 @@ subroutine ParseCommandLine()
       end if
       nny = 1
       
-    ! THE SLICE DISRETIZATION
+      ! THE SLICE DISRETIZATION
     case ("-nz")
       nfound = 1
       i = i + 1
@@ -779,8 +779,8 @@ subroutine ParseCommandLine()
         nz = 0 ! set back to default equidistant slicing
       end if
       if (nz<0) nz = -1 ! set back to default auto slicing
-    
-    ! THE NUMBER OF VARIANTS
+
+      ! THE NUMBER OF VARIANTS
     case ("-nv")
       nfound = 1
       i = i + 1
@@ -799,7 +799,7 @@ subroutine ParseCommandLine()
         call CriticalError("Failed to read number of variants per slice.")
       end if
       
-    ! FORM-FACTOR DECAY DATA OUTPUT
+      ! FORM-FACTOR DECAY DATA OUTPUT
     case ("-ffdec")
       nfound = 1
       nffdec = 1
@@ -820,7 +820,7 @@ subroutine ParseCommandLine()
         nffdec = 0
       end if
       
-    ! SCATTERIN-POWER LOSS OUTPUT
+      ! SCATTERIN-POWER LOSS OUTPUT
     case ("-f2dec")
       nfound = 1
       nf2dec = 1
@@ -841,22 +841,22 @@ subroutine ParseCommandLine()
         nffdec = 0
       end if
       
-    ! FROZEN LATTICE USAGE
+      ! FROZEN LATTICE USAGE
     case ("-fl")
       nfound = 1
       nfl = 1 ! switch on frozen lattice calculation
       
-    ! DEBYE-WALLER FACTOR USAGE
+      ! DEBYE-WALLER FACTOR USAGE
     case ("-dwf")
       nfound = 1
       ndwf = 1 ! switch on Debye-Waller factors
       
-    ! ABSORPTION USAGE FROM WEICKENMEYER&KOHL, Acta Cryst. A 47 (1991) p. 597
+      ! ABSORPTION USAGE FROM WEICKENMEYER&KOHL, Acta Cryst. A 47 (1991) p. 597
     case ("-abs")
       nfound = 1
       nabs = 1 ! switch on absorption
       
-    ! ABSORPTION USAGE FROM HASHIMOTO, HOWIE, WHELAN, Proc. R. Soc. London Ser. A, 269, 80-103 (1962)   
+      ! ABSORPTION USAGE FROM HASHIMOTO, HOWIE, WHELAN, Proc. R. Soc. London Ser. A, 269, 80-103 (1962)   
     case ("-abf")
       nfound = 1
       i = i + 1
@@ -876,22 +876,22 @@ subroutine ParseCommandLine()
       end if
       nabf = 1
       
-    ! EXPORT POTENTIAL FILES
+      ! EXPORT POTENTIAL FILES
     case ("-pot")
       nfound = 1
       npot = 1 ! switch on potential export
-    
+
     case ("-pps")  
-    ! OUTPUT POTENTIALS TO SLICE FILES INSTEAD OF PHASE GRATINGS
+      ! OUTPUT POTENTIALS TO SLICE FILES INSTEAD OF PHASE GRATINGS
       nfound = 1
       npps = 1
       
-    ! CREATE 3D POTENTIAL
+      ! CREATE 3D POTENTIAL
     case ("-3dp")
       nfound = 1
       n3dp = 1 ! switch on 3d potential creation
       
-    ! USE EXTRA X-RAY SCATTERING FACTORS
+      ! USE EXTRA X-RAY SCATTERING FACTORS
     case ("-fx")
       nfound = 1
       i = i + 1
@@ -907,7 +907,7 @@ subroutine ParseCommandLine()
       write(unit = sfxfile, fmt='(A)') buffer(1:len)
       nfx = 1
       
-    ! USE EXTRA ELECTRON SCATTERING FACTORS
+      ! USE EXTRA ELECTRON SCATTERING FACTORS
     case ("-fe")
       nfound = 1
       i = i + 1
@@ -922,8 +922,8 @@ subroutine ParseCommandLine()
       end if
       write(unit = sfefile, fmt='(A)') buffer(1:len)
       nfe = 1
-    
-    ! SLICE IN REVERSED ORDER 
+
+      ! SLICE IN REVERSED ORDER 
     case ("-rev")
       nfound = 1
       nrev = 1
@@ -935,12 +935,12 @@ subroutine ParseCommandLine()
     case ("-verbose")
       nfound = 1
       nverbose = 3
-    
+
     case ("-silent")
       nfound = 1
       nverbose = -1
-    
-    ! ALTERNATIVE INPUT FORMAT
+
+      ! ALTERNATIVE INPUT FORMAT
     case ("-inf")
       nfound = 1
       i = i + 1
@@ -958,8 +958,8 @@ subroutine ParseCommandLine()
         call ExplainUsage()
         call CriticalError("Failed to read input file format selector.")
       end if
-    
-    ! CALCULATE ONLY ONE SLICE  
+
+      ! CALCULATE ONLY ONE SLICE  
     case ("-ssc")
       nfound = 1
       i = i + 1
@@ -977,8 +977,8 @@ subroutine ParseCommandLine()
         call ExplainUsage()
         call CriticalError("Failed to read input file format selector.")
       end if
-    
-    ! APPLY UNIVERSAL THERMAL DISPLACEMENT PARAMETERS  
+
+      ! APPLY UNIVERSAL THERMAL DISPLACEMENT PARAMETERS  
     case ("-buni")
       nfound = 1
       buni = 1
@@ -997,253 +997,253 @@ subroutine ParseCommandLine()
         call ExplainUsage()
         call CriticalError("Failed to read universal B_ISO parameter.")
       end if
-    
-    ! CREATE A RE-ORIENTED ORTHOGONAL SUPER-CELL FROM INPUT STRUCTURE
+
+      ! CREATE A RE-ORIENTED ORTHOGONAL SUPER-CELL FROM INPUT STRUCTURE
     case ("-prj")
       nfound = 1
       block = 1
-      i = i + 1
-      if (i>cnt) then
+        i = i + 1
+        if (i>cnt) then
+          call ExplainUsage()
+          call CriticalError("Command line parsing error.")
+        end if
+        call get_command_argument (i, buffer, len, status) ! h,k,l,m,n,o,a,b,c
+        if (status/=0) then
+          call ExplainUsage()
+          call CriticalError("Command line parsing error.")
+        end if
+        read(unit=buffer,fmt=*,iostat=status) bloh,blok,blol,blyh,blyk,blyl,blsa,blsb,blsc
+        if (status/=0) then
+          call ExplainUsage()
+          call CriticalError("Failed to read 9 orientation and size parameters.")
+        end if
+
+        ! SHIFT OF ALL ATOMS BY A CERTAIN VECTOR ALONG THE THREE AXES OF THE SUPER-CELL
+      case ("-tla")
+        nfound = 1
+        ntla = 1
+        i = i + 1
+        if (i>cnt) then
+          call ExplainUsage()
+          call CriticalError("Command line parsing error.")
+        end if
+        call get_command_argument (i, buffer, len, status) ! x,y,z
+        if (status/=0) then
+          call ExplainUsage()
+          call CriticalError("Command line parsing error.")
+        end if
+        read(unit=buffer,fmt=*,iostat=status) tlax,tlay,tlaz
+        if (status/=0) then
+          call ExplainUsage()
+          call CriticalError("Failed to read 3 shift vector components.")
+        end if
+
+        ! THE INTERNAL FORM-FACTORS
+      case ("-nsca")
+        nfound = 1
+        i = i + 1
+        if (i>cnt) then
+          call ExplainUsage()
+          call CriticalError("Command line parsing error.")
+        end if
+        call get_command_argument (i, buffer, len, status) ! form factor table index
+        if (status/=0) then
+          call ExplainUsage()
+          call CriticalError("Command line parsing error.")
+        end if
+        read(unit=buffer,fmt=*,iostat=status) nsca
+        if (status/=0 .or. nsca<0 .or. nsca>2 ) then
+          call PostWarning("Failed to read form-factor table index. Switching to default.")
+          nsca = 0 ! set back to default Weickenmeier and Kohl
+        end if
+
+      end select CHECK_COMMAND
+
+      if (nfound == 0) then
         call ExplainUsage()
-        call CriticalError("Command line parsing error.")
+        call CriticalError("Command line parsing error. Unknown command ["//cmd(1:len)//"].")
       end if
-      call get_command_argument (i, buffer, len, status) ! h,k,l,m,n,o,a,b,c
-      if (status/=0) then
-        call ExplainUsage()
-        call CriticalError("Command line parsing error.")
-      end if
-      read(unit=buffer,fmt=*,iostat=status) bloh,blok,blol,blyh,blyk,blyl,blsa,blsb,blsc
-      if (status/=0) then
-        call ExplainUsage()
-        call CriticalError("Failed to read 9 orientation and size parameters.")
-      end if
-      
-    ! SHIFT OF ALL ATOMS BY A CERTAIN VECTOR ALONG THE THREE AXES OF THE SUPER-CELL
-    case ("-tla")
-      nfound = 1
-      ntla = 1
-      i = i + 1
-      if (i>cnt) then
-        call ExplainUsage()
-        call CriticalError("Command line parsing error.")
-      end if
-      call get_command_argument (i, buffer, len, status) ! x,y,z
-      if (status/=0) then
-        call ExplainUsage()
-        call CriticalError("Command line parsing error.")
-      end if
-      read(unit=buffer,fmt=*,iostat=status) tlax,tlay,tlaz
-      if (status/=0) then
-        call ExplainUsage()
-        call CriticalError("Failed to read 3 shift vector components.")
-      end if
-      
-    ! THE INTERNAL FORM-FACTORS
-    case ("-nsca")
-      nfound = 1
-      i = i + 1
-      if (i>cnt) then
-        call ExplainUsage()
-        call CriticalError("Command line parsing error.")
-      end if
-      call get_command_argument (i, buffer, len, status) ! form factor table index
-      if (status/=0) then
-        call ExplainUsage()
-        call CriticalError("Command line parsing error.")
-      end if
-      read(unit=buffer,fmt=*,iostat=status) nsca
-      if (status/=0 .or. nsca<0 .or. nsca>2 ) then
-        call PostWarning("Failed to read form-factor table index. Switching to default.")
-        nsca = 0 ! set back to default Weickenmeier and Kohl
-      end if
-      
-    end select CHECK_COMMAND
-    
-    if (nfound == 0) then
+
+    end do
+
+
+    ! ------------
+    ! final option existence checks
+    if (nprm==0) then
       call ExplainUsage()
-      call CriticalError("Command line parsing error. Unknown command ["//cmd(1:len)//"].")
+      call CriticalError("Command line error. Structure data file not specified")
     end if
-  
-  end do
-  
-  
-! ------------
-! final option existence checks
-  if (nprm==0) then
-    call ExplainUsage()
-    call CriticalError("Command line error. Structure data file not specified")
-  end if
-  if (nout==0) then
-    call ExplainUsage()
-    call CriticalError("Command line error. Output file not specified")
-  end if
-  if (nht==0) then
-    call ExplainUsage()
-    call CriticalError("Command line error. TEM high tension not specified")
-  end if
-  if (nfin==0.or.nfin==1) then
-    if (nnx==0) then
+    if (nout==0) then
       call ExplainUsage()
-      call CriticalError("Command line error. x-discretization not specified")
+      call CriticalError("Command line error. Output file not specified")
     end if
-    if (nny==0) then
+    if (nht==0) then
       call ExplainUsage()
-      call CriticalError("Command line error. y-discretization not specified")
+      call CriticalError("Command line error. TEM high tension not specified")
     end if
-  end if
+    if (nfin==0.or.nfin==1) then
+      if (nnx==0) then
+        call ExplainUsage()
+        call CriticalError("Command line error. x-discretization not specified")
+      end if
+      if (nny==0) then
+        call ExplainUsage()
+        call CriticalError("Command line error. y-discretization not specified")
+      end if
+    end if
 
-! ------------
-  return
+    ! ------------
+    return
 
-END SUBROUTINE ParseCommandLine
+  END SUBROUTINE ParseCommandLine
 
 
-SUBROUTINE CheckCommandLine
-  use celslcprm
-  use CellSlicer
-  implicit none
-  
-  character(len=1024) smsg
+  SUBROUTINE CheckCommandLine
+    use celslcprm
+    use CellSlicer
+    implicit none
 
-  ! ------------
-! treat unwanted combination of optional parameters
-  if (nfl<0) nfl = 0
-  if (nfl>1) nfl = 1
-  if (nabs<0) nabs = 0
-  if (nabs>1) nabs = 1
-  if (nabf<0) nabf = 0
-  if (nabf>1) nabf = 1
-  if (ndwf<0) ndwf = 0
-  if (ndwf>1) ndwf = 1
-  if (npot<0) npot = 0
-  if (npot>1) npot = 1
-  if (npps<0) npps = 0
-  if (npps>1) npps = 1
-  if (n3dp<0) n3dp = 0
-  if (n3dp>1) n3dp = 1
-  if (nrev<0) nrev = 0
-  if (nrev>1) nrev = 1
-  if (nfl==1) then ! turn OFF dwf and abs
-    ndwf = 0
-    nabs = 0
-  else
-    nv = 1 ! set number of variants back to default 1.
-    if (ndwf==0) then ! turn OFF abs
+    character(len=1024) smsg
+
+    ! ------------
+    ! treat unwanted combination of optional parameters
+    if (nfl<0) nfl = 0
+    if (nfl>1) nfl = 1
+    if (nabs<0) nabs = 0
+    if (nabs>1) nabs = 1
+    if (nabf<0) nabf = 0
+    if (nabf>1) nabf = 1
+    if (ndwf<0) ndwf = 0
+    if (ndwf>1) ndwf = 1
+    if (npot<0) npot = 0
+    if (npot>1) npot = 1
+    if (npps<0) npps = 0
+    if (npps>1) npps = 1
+    if (n3dp<0) n3dp = 0
+    if (n3dp>1) n3dp = 1
+    if (nrev<0) nrev = 0
+    if (nrev>1) nrev = 1
+    if (nfl==1) then ! turn OFF dwf and abs
+      ndwf = 0
       nabs = 0
-    end if
-  end if
-  if (nabs==1) then ! turn OFF abf
-    nabf = 0
-  end if
-  if (nfe==1.and.nfx==1) then ! prefer fe-prm
-    nfx = 0
-  end if
-! This switch has become obsolete with the implementation of numerical
-! integrations of absorptive form factors.
-!  if (nfe==1.or.nfx==1) then ! prefer fe-prm
-!    if (nabs==1) then ! do not allow automatic absorption factors
-!      nabs = 0
-!      call PostWarning("Automatic absorption factor calculation is "// &
-!                     & "not supported with external scattering "// &
-!                     & "tables. The option -abs is ignored. "// &
-!                     & "Use the -abf option instead.")
-!    end if
-!  end if
-  if (ssc<0) ssc = 0 ! turn single slice calculation off.
-  
-  if (nz<=0) then
-    if (n3dp>1) then
-      call CriticalError("Automatic slicing is not supported in "// &
-                       & "combination with the option -3dp. Use the -nz option "// &
-                       & "to explicitly set the sampling along z manually!")
-    end if
-    if (nfin>=10) then
-      call PostMessage("Using automatic slicing according to the input 3D potential.")
-    end if
-    if (nz<0) then
-      call PostMessage("Using non-equidistant automatic slicing of the super-cell.")
     else
-      call PostMessage("Using equidistant automatic slicing of the super-cell.")
+      nv = 1 ! set number of variants back to default 1.
+      if (ndwf==0) then ! turn OFF abs
+        nabs = 0
+      end if
     end if
-    
-  else
-    write(unit=smsg,fmt=*) nz
-    call PostMessage( "Creating "//trim(adjustl(smsg))// &
-                    & " equidistant slices of the super-cell.")
-  end if
-  if (ndwf==1) call PostMessage("Using Debye-Waller factors.")
-  if (nabs==1) call PostMessage("Using absorption potentials.")
-  if (nabf==1) then
-    write(unit=smsg,fmt='(F8.3)') abf
-    call PostMessage("Using absorption potentials with fix absorption factor "&
-     &   //trim(adjustl(smsg))//".")
-  else
-    abf = 0.0
-  end if
-  if (nfl==1) call PostMessage("Generating frozen lattice configurations.")
-  if (nfl==1.and.nv==1) call PostWarning(&
+    if (nabs==1) then ! turn OFF abf
+      nabf = 0
+    end if
+    if (nfe==1.and.nfx==1) then ! prefer fe-prm
+      nfx = 0
+    end if
+    ! This switch has become obsolete with the implementation of numerical
+    ! integrations of absorptive form factors.
+    !  if (nfe==1.or.nfx==1) then ! prefer fe-prm
+    !    if (nabs==1) then ! do not allow automatic absorption factors
+    !      nabs = 0
+    !      call PostWarning("Automatic absorption factor calculation is "// &
+    !                     & "not supported with external scattering "// &
+    !                     & "tables. The option -abs is ignored. "// &
+    !                     & "Use the -abf option instead.")
+    !    end if
+    !  end if
+    if (ssc<0) ssc = 0 ! turn single slice calculation off.
+
+    if (nz<=0) then
+      if (n3dp>1) then
+        call CriticalError("Automatic slicing is not supported in "// &
+         & "combination with the option -3dp. Use the -nz option "// &
+         & "to explicitly set the sampling along z manually!")
+      end if
+      if (nfin>=10) then
+        call PostMessage("Using automatic slicing according to the input 3D potential.")
+      end if
+      if (nz<0) then
+        call PostMessage("Using non-equidistant automatic slicing of the super-cell.")
+      else
+        call PostMessage("Using equidistant automatic slicing of the super-cell.")
+      end if
+
+    else
+      write(unit=smsg,fmt=*) nz
+      call PostMessage( "Creating "//trim(adjustl(smsg))// &
+        & " equidistant slices of the super-cell.")
+    end if
+    if (ndwf==1) call PostMessage("Using Debye-Waller factors.")
+    if (nabs==1) call PostMessage("Using absorption potentials.")
+    if (nabf==1) then
+      write(unit=smsg,fmt='(F8.3)') abf
+      call PostMessage("Using absorption potentials with fix absorption factor "&
+       &   //trim(adjustl(smsg))//".")
+    else
+      abf = 0.0
+    end if
+    if (nfl==1) call PostMessage("Generating frozen lattice configurations.")
+    if (nfl==1.and.nv==1) call PostWarning(&
      & "Only one frozen lattice configuration is generated per slice.")
-  if (nv>1) call PostMessage("Generating several variants per slice.")
-  if (npot==1) call PostMessage("Exporting potentials to files *.pot.")
-  if (npps==0) call PostMessage("Output in slice files are phase gratings.")
-  if (npps==1) call PostMessage("Output in slice files are projected potentials.")
-  if (n3dp==1) call PostMessage("Creating a 3D potential from the atomic structure model.")
-  if (nfx==1) call PostMessage("Using external x-ray scattering factor tables.")
-  if (nfe==1) call PostMessage("Using external electron scattering factor parameters.")
-  if (nrev==0) call PostMessage("Sorting slices in default order from z/c=0 to z/c=1.")
-  if (nrev==1) call PostMessage("Sorting slices in reverse order from z/c=1 to z/c=0.")
-  if (nfin==0) call PostMessage("Input structure parameter file: CEL format (default).")
-  if (nfin==1) call PostMessage("Input structure parameter file: CIF format.")
-  if (nfin>=10.and.nfin<=19) call PostMessage("Input structure parameter file: ASCII 3D potential grid.")
-  if (ssc>0) call PostMessage("Single slice calculation mode.")
-  if (buni==1) then
-    write(unit=smsg,fmt='(F8.3)') buniv
-    call PostMessage("Using B_ISO = "//trim(adjustl(smsg))//" nm^2 for all atoms.")
-  end if
-  if (block==1) then
-    call PostMessage("Re-orienting input structure to an orthogonal super-cell")
-    write(unit=smsg,fmt='(F8.5,", ",F8.5,", ",F8.5)') blsa,blsb,blsc
-    call PostMessage("- size: "//trim(adjustl(smsg))//" (nm)")
-    write(unit=smsg,fmt='(F6.2,", ",F6.2,", ",F6.2)') bloh,blok,blol
-    call PostMessage("- projection  axis: "//trim(adjustl(smsg))//" [uvw]")
-    write(unit=smsg,fmt='(F6.2,", ",F6.2,", ",F6.2)') blyh,blyk,blyl
-    call PostMessage("- projected y-axis: "//trim(adjustl(smsg))//" [uvw]")
-  end if
-  if (ntla==1) then
-    call PostMessage("Shifting all atoms along the axes of the final orthogonal super-cell")
-    write(unit=smsg,fmt='(G12.5,", ",G12.5,", ",G12.5)') tlax,tlay,tlaz
-    call PostMessage("- shift vector: "//trim(adjustl(smsg))//" (fractional)")
-  end if
+    if (nv>1) call PostMessage("Generating several variants per slice.")
+    if (npot==1) call PostMessage("Exporting potentials to files *.pot.")
+    if (npps==0) call PostMessage("Output in slice files are phase gratings.")
+    if (npps==1) call PostMessage("Output in slice files are projected potentials.")
+    if (n3dp==1) call PostMessage("Creating a 3D potential from the atomic structure model.")
+    if (nfx==1) call PostMessage("Using external x-ray scattering factor tables.")
+    if (nfe==1) call PostMessage("Using external electron scattering factor parameters.")
+    if (nrev==0) call PostMessage("Sorting slices in default order from z/c=0 to z/c=1.")
+    if (nrev==1) call PostMessage("Sorting slices in reverse order from z/c=1 to z/c=0.")
+    if (nfin==0) call PostMessage("Input structure parameter file: CEL format (default).")
+    if (nfin==1) call PostMessage("Input structure parameter file: CIF format.")
+    if (nfin>=10.and.nfin<=19) call PostMessage("Input structure parameter file: ASCII 3D potential grid.")
+    if (ssc>0) call PostMessage("Single slice calculation mode.")
+    if (buni==1) then
+      write(unit=smsg,fmt='(F8.3)') buniv
+      call PostMessage("Using B_ISO = "//trim(adjustl(smsg))//" nm^2 for all atoms.")
+    end if
+    if (block==1) then
+      call PostMessage("Re-orienting input structure to an orthogonal super-cell")
+      write(unit=smsg,fmt='(F8.5,", ",F8.5,", ",F8.5)') blsa,blsb,blsc
+      call PostMessage("- size: "//trim(adjustl(smsg))//" (nm)")
+      write(unit=smsg,fmt='(F6.2,", ",F6.2,", ",F6.2)') bloh,blok,blol
+      call PostMessage("- projection  axis: "//trim(adjustl(smsg))//" [uvw]")
+      write(unit=smsg,fmt='(F6.2,", ",F6.2,", ",F6.2)') blyh,blyk,blyl
+      call PostMessage("- projected y-axis: "//trim(adjustl(smsg))//" [uvw]")
+    end if
+    if (ntla==1) then
+      call PostMessage("Shifting all atoms along the axes of the final orthogonal super-cell")
+      write(unit=smsg,fmt='(G12.5,", ",G12.5,", ",G12.5)') tlax,tlay,tlaz
+      call PostMessage("- shift vector: "//trim(adjustl(smsg))//" (fractional)")
+    end if
 
-  write(unit=smsg,fmt='(F8.2)') ht
-  call PostMessage("Input electron energy: "//trim(adjustl(smsg))//" keV")
-  write(unit=smsg,fmt='(G12.5)') wl*1000.0
-  call PostMessage("Input electron wavelength: "//trim(adjustl(smsg))//" pm")
-  write(unit=smsg,fmt='(G12.5)') CS_sig * wl
-  call PostMessage("Interaction constant: "//trim(adjustl(smsg))//" (eV nm)^(-1) (2pi m0 e / h^2 * lambda)")
-  if (nffdec==1) then
-    write(unit=smsg,fmt=*) vffdec
-    call PostMessage("Output of k-values where form factors decay by "// &
+    write(unit=smsg,fmt='(F8.2)') ht
+    call PostMessage("Input electron energy: "//trim(adjustl(smsg))//" keV")
+    write(unit=smsg,fmt='(G12.5)') wl*1000.0
+    call PostMessage("Input electron wavelength: "//trim(adjustl(smsg))//" pm")
+    write(unit=smsg,fmt='(G12.5)') CS_sig * wl
+    call PostMessage("Interaction constant: "//trim(adjustl(smsg))//" (eV nm)^(-1) (2pi m0 e / h^2 * lambda)")
+    if (nffdec==1) then
+      write(unit=smsg,fmt=*) vffdec
+      call PostMessage("Output of k-values where form factors decay by "// &
        & trim(adjustl(smsg))//" to file ffdec.txt")
-  end if
-  if (nf2dec==1) then
-    write(unit=smsg,fmt=*) vf2dec
-    call PostMessage("Output of k-values where loss of scattering power exceeds "// &
+    end if
+    if (nf2dec==1) then
+      write(unit=smsg,fmt=*) vf2dec
+      call PostMessage("Output of k-values where loss of scattering power exceeds "// &
        & trim(adjustl(smsg))//" to file f2dec.txt")
-  end if
+    end if
 
-  return
+    return
 
-END SUBROUTINE CheckCommandLine
+  END SUBROUTINE CheckCommandLine
 
 
 !**********************************************************************!
-!
-! function ht2wl
-!
-! returns electron wavelength for given high tension
-!
-real*4 function ht2wl(ht)
+  !
+  ! function ht2wl
+  !
+  ! returns electron wavelength for given high tension
+  !
+  real*4 function ht2wl(ht)
   implicit none
   real*4 :: ht
   ht2wl = 1.239842447 / sqrt( ht * ( 1022.0 + ht ) )
@@ -1270,7 +1270,7 @@ end function ht2wl
 ! line 010: sdz                         = slice thickness [nm]
 ! line 011: parameter block for the next slice, analogous as from line 002
 subroutine writeslcprm(sfile)
-  
+
   use celslcprm
   use CellSlicer
   
@@ -1289,7 +1289,7 @@ subroutine writeslcprm(sfile)
   if (lun<=0) call CriticalError("Failed to acquire free logical file unit.")
   call createfilefolder(trim(sfile),nerr)
   open( file=trim(sfile),unit=lun,iostat=nerr, &
-     &  action='WRITE',status='REPLACE')
+   &  action='WRITE',status='REPLACE')
   if (nerr/=0) call CriticalError("Failed to open file.")
   
   ! write number of slices
@@ -1297,7 +1297,7 @@ subroutine writeslcprm(sfile)
   
   ! loop over all slices
   do i=1, nz
-  
+
     ! write slice parameter intro
     write(unit=lun,fmt='(A)') "'[Slice Parameters]'"
     
@@ -1330,7 +1330,7 @@ subroutine writeslcprm(sfile)
     ! write slice thickness
     sdz = CS_slczlim(2,i) - CS_slczlim(1,i)
     write(unit=lun,fmt='(F12.8)') sdz
-  
+
   end do
   
   close( unit=lun, iostat=nerr )
@@ -1364,145 +1364,170 @@ subroutine CEL2SLC()
   real*4 :: fz0, fz1, mpot
   complex*8, allocatable, dimension(:,:,:) :: slcdat
   real*4, external :: HT2WL
+  integer :: omp_threads_id, omp_num_of_nodes
+
+
+
+  ! generate scattering data
+  call PostMessage("Preparing scattering amplitudes for all atom types.")
+  CS_absorptionprm = abf
+  CS_useppot = 1 ! use projected potentials
+  call CS_PREPARE_SCATTAMPS(nx,ny,1,ndwf,nabs+2*nabf,wl,nerr)
+  if (nerr/=0) call CriticalError("Failed to prepare scattering amplitudes")
+  call CS_GET_MEANINNERPOT(mpot, ht, nerr)
+  write(unit=smsg,fmt='(F10.5)') mpot
+  call PostMessage("Mean inner potential: "//trim(adjustl(smsg))//" V")
+  wl1 = HT2WL(ht+0.001*mpot)
+  write(unit=smsg,fmt='(F10.5)') wl1*1000.
+  call PostMessage("Wave length corrected for refraction: "//trim(adjustl(smsg))//" pm")
+  write(unit=smsg,fmt='(F10.5)') wl*1000.
+  call PostMessage("Wave length in vacuum               : "//trim(adjustl(smsg))//" pm")
+
+  ! prepare slicing
+  call PostMessage("Distributing atoms in slices.")
+  if (nz>0) then ! equidistant slicing
+    call CS_SETSLICE_EQUIDIST(nz,nrev,nerr)
+  else if (nz==0) then ! equidistant auto slicing
+    call CS_SUGGEST_NSLCEQUI(0.02,nz,nerr)
+    call CS_SETSLICE_EQUIDIST(nz,nrev,nerr)
+  else ! non-equidistant auto slicing
+    call CS_SETSLICE_AUTO(nrev,nerr)
+    nz = CS_nspsc ! update nz to number of slices
+  end if
+  if (nerr/=0) call CriticalError("Failed to distribute atoms in slices.")
+  write(unit=smsg, fmt=*) nz
+  call PostMessage("- generated "//trim(adjustl(smsg))//" partitions of the super-cell.")
+  ! set absorption parameters
+  CS_useabsorption = 0
+  if (nabs/=0) CS_useabsorption = 1
   
-    
-    ! generate scattering data
-    call PostMessage("Preparing scattering amplitudes for all atom types.")
-    CS_absorptionprm = abf
-    CS_useppot = 1 ! use projected potentials
-    call CS_PREPARE_SCATTAMPS(nx,ny,1,ndwf,nabs+2*nabf,wl,nerr)
-    if (nerr/=0) call CriticalError("Failed to prepare scattering amplitudes")
-    call CS_GET_MEANINNERPOT(mpot, ht, nerr)
-    write(unit=smsg,fmt='(F10.5)') mpot
-    call PostMessage("Mean inner potential: "//trim(adjustl(smsg))//" V")
-    wl1 = HT2WL(ht+0.001*mpot)
-    write(unit=smsg,fmt='(F10.5)') wl1*1000.
-    call PostMessage("Wave length corrected for refraction: "//trim(adjustl(smsg))//" pm")
-    write(unit=smsg,fmt='(F10.5)') wl*1000.
-    call PostMessage("Wave length in vacuum               : "//trim(adjustl(smsg))//" pm")
- 
-    ! prepare slicing
-    call PostMessage("Distributing atoms in slices.")
-    if (nz>0) then ! equidistant slicing
-      call CS_SETSLICE_EQUIDIST(nz,nrev,nerr)
-    else if (nz==0) then ! equidistant auto slicing
-      call CS_SUGGEST_NSLCEQUI(0.02,nz,nerr)
-      call CS_SETSLICE_EQUIDIST(nz,nrev,nerr)
-    else ! non-equidistant auto slicing
-      call CS_SETSLICE_AUTO(nrev,nerr)
-      nz = CS_nspsc ! update nz to number of slices
-    end if
-    if (nerr/=0) call CriticalError("Failed to distribute atoms in slices.")
-    write(unit=smsg, fmt=*) nz
-    call PostMessage("- generated "//trim(adjustl(smsg))//" partitions of the super-cell.")
-    ! set absorption parameters
-    CS_useabsorption = 0
-    if (nabs/=0) CS_useabsorption = 1
-  
-    ! allocate slice memory
+! allocate slice memory
     call PostMessage("Allocating slice memory.")
     allocate(slcdat(nx,ny,nv),stat=nerr)
     if (nerr/=0) call CriticalError("Failed to allocate slice memory.")
-  
-    ! set potential backup option
-    CS_backup_pot_flg = npot ! store potentials, we want to export them
-    if (npps==1) CS_backup_pot_flg = 1 ! store potentials, we want to output them
-  
-    ! creating phase gratings for all slices
-    do i=1, nz
+
+  ! set potential backup option
+  CS_backup_pot_flg = npot ! store potentials, we want to export them
+  if (npps==1) CS_backup_pot_flg = 1 ! store potentials, we want to output them
+ 
+
+  ! creating phase gratings for all slices
+  !$omp parallel default(shared) private(i, j, k, nat, smsg, sfil, stmp1, stmp2, sslnum, svrnum, svrmax, fz0, fz1, mpot, slcdat )
+
+  omp_num_of_nodes = omp_get_num_procs()
+
+  call omp_set_num_threads( omp_num_of_nodes )
+
+  print*, 'Number of threads available: ', omp_num_of_nodes
+
+  !$OMP PARALLEL DO 
+  do i=1, nz
     
-      ! handle single slice calculation mode, added 2015-06-03, JB
-      if (ssc>0 .and. i/=ssc) cycle ! skip all other slices in single slice calculation mode
+
+    ! handle single slice calculation mode, added 2015-06-03, JB
+    if (ssc>0 .and. i/=ssc) cycle ! skip all other slices in single slice calculation mode
     
-      write(unit=sslnum,fmt='(I<ndigsl>.<ndigsl>)') i
-      sslnum = trim(adjustl(sslnum))
+    write(unit=sslnum,fmt='(I<ndigsl>.<ndigsl>)') i
+
+
+    !$OMP CRITICAL
+write(*,*) i, omp_get_thread_num()
+!$OMP END CRITICAL
     
-      call PostMessage("Preparing slice "//trim(sslnum)//".")
-      write(unit=smsg,fmt='("  ",I5," atoms.")') CS_slcatnum(i)
-      call PostMessage(trim(smsg))
-      !
-      ! setup slice title using atomic content
-      call CS_GETSLICETITLE(i,EMS_SLI_data_title,nerr)
-      if (nerr/=0) call CriticalError("Failed analyse slice data.")
-      call PostMessage("  "//trim(EMS_SLI_data_title))
-      !
-      ! calculate phase gratings
-      CS_warn_num = 0
-      do j=1, nv ! loop over numbr of variants (FL)
-        
-        write(unit=svrnum,fmt='(I<ndigvr>.<ndigvr>)') j
-        svrnum = trim(adjustl(svrnum))
-        write(unit=svrmax,fmt='(I<ndigvr>.<ndigvr>)') nv
-        svrmax = trim(adjustl(svrmax))
-        
-        if (nv>1) then
-          call PostMessage("- preparing variant "//trim(svrnum)// &
+    call PostMessage("Preparing slice "//trim(sslnum)//".")
+    write(unit=smsg,fmt='("  ",I5," atoms.")') CS_slcatnum(i)
+    call PostMessage(trim(smsg))
+
+    sslnum = trim(adjustl(sslnum))
+
+    
+
+    !
+    ! setup slice title using atomic content
+    call CS_GETSLICETITLE(i,EMS_SLI_data_title,nerr)
+    if (nerr/=0) call CriticalError("Failed analyse slice data.")
+    call PostMessage("  "//trim(EMS_SLI_data_title))
+    !
+    ! calculate phase gratings
+    CS_warn_num = 0
+    do j=1, nv ! loop over numbr of variants (FL)
+
+      write(unit=svrnum,fmt='(I<ndigvr>.<ndigvr>)') j
+      svrnum = trim(adjustl(svrnum))
+      write(unit=svrmax,fmt='(I<ndigvr>.<ndigvr>)') nv
+      svrmax = trim(adjustl(svrmax))
+
+      if (nv>1) then
+        call PostMessage("- preparing variant "//trim(svrnum)// &
           &    " of "//trim(svrmax)//".")
-        end if
-        
-        call CS_GETSLICE_PGR(i, nx, ny, 1, 1, nabs, nfl, ndwf, wl, &
-           & slcdat(:,:,j), nerr)
-        if (nerr/=0) call CriticalError("Slice preparation failed.")
-        EMS_SLI_data_ctype = 0 ! set default slice data type (phase grating)
-        
-        if (npps==1) then ! replace pgr output with potential data
-          slcdat(1:nx,1:ny,j) = CS_backup_pot(1:nx,1:ny)
-          ! mark the change in the slice export module
-          EMS_SLI_data_ctype = 1 ! set to potential
-        end if
+      end if
+
+      call CS_GETSLICE_PGR(i, nx, ny, 1, 1, nabs, nfl, ndwf, wl, &
+       & slcdat(:,:,j), nerr)
+      if (nerr/=0) call CriticalError("Slice preparation failed.")
+      EMS_SLI_data_ctype = 0 ! set default slice data type (phase grating)
+
+      if (npps==1) then ! replace pgr output with potential data
+        slcdat(1:nx,1:ny,j) = CS_backup_pot(1:nx,1:ny)
+        ! mark the change in the slice export module
+        EMS_SLI_data_ctype = 1 ! set to potential
+      end if
       
-        if (npot==1) then ! save potential backup
-          if (nv>1) then
-            sfil = trim(sslcfile)//"_"//trim(sslnum)//"_"// &
-            &      trim(svrnum)//".pot"
-          else
-            sfil = trim(sslcfile)//"_"//trim(sslnum)//".pot"
-          end if
-          call savedatac8(trim(sfil), nx* ny, CS_backup_pot, nerr)
-          if (nerr/=0) then
-            call PostWarning("Failed to write potential to file.")
-          else
-            call PostMessage("Proj. slice potential saved to file ["// &
-               & trim(sfil)//"].")
-          end if
-        end if
-        
-        
-      end do
-      !
-      ! gather atom data to a table before saving (elastic data only, inelastic: TODO)
-      nat = CS_slcatnum(i) ! number of atoms in this slice
-      fz0 = CS_slczlim(1,i)/CS_scsz ! fractional slice z-offset
-      fz1 = CS_slczlim(2,i)/CS_scsz ! fractional slice z-termination
-      sdz = CS_slczlim(2,i) - CS_slczlim(1,i) ! slice thickness in nm
-      !
-      call EMS_SLI_settab1(fz0, fz1, nat, CS_slcatacc(1:nat,i), &
-     &     CS_numat, CS_atnum(1:CS_numat), CS_atcrg(1:CS_numat), &
-     &     CS_atdwf(1:CS_numat), CS_atocc(1:CS_numat), &
-     &     CS_atpos(1:3,1:CS_numat) )
-      !
-      ! write data to a slice file
-      sfil = trim(sslcfile)//"_"//trim(sslnum)//".sli"
-      call EMS_SLI_save(trim(sfil),nx,ny,nv,CS_scsx,CS_scsy, &
-                      & sdz,ht,slcdat,nerr)
-      if (nerr/=0) then
-        call CriticalError("Failed to write slice file.")
-      else
-        if (npps==1) then
-          call PostMessage("Projected potential data saved to file ["// &
-           & trim(sfil)//"].")
+      if (npot==1) then ! save potential backup
+        if (nv>1) then
+          sfil = trim(sslcfile)//"_"//trim(sslnum)//"_"// &
+          &      trim(svrnum)//".pot"
         else
-          call PostMessage("Slice phase-grating data saved to file ["// &
+          sfil = trim(sslcfile)//"_"//trim(sslnum)//".pot"
+        end if
+        call savedatac8(trim(sfil), nx* ny, CS_backup_pot, nerr)
+        if (nerr/=0) then
+          call PostWarning("Failed to write potential to file.")
+        else
+          call PostMessage("Proj. slice potential saved to file ["// &
            & trim(sfil)//"].")
         end if
       end if
-      !
+
+
     end do
+
+
+    !
+    ! gather atom data to a table before saving (elastic data only, inelastic: TODO)
+    nat = CS_slcatnum(i) ! number of atoms in this slice
+    fz0 = CS_slczlim(1,i)/CS_scsz ! fractional slice z-offset
+    fz1 = CS_slczlim(2,i)/CS_scsz ! fractional slice z-termination
+    sdz = CS_slczlim(2,i) - CS_slczlim(1,i) ! slice thickness in nm
+    !
+    call EMS_SLI_settab1(fz0, fz1, nat, CS_slcatacc(1:nat,i), &
+     &     CS_numat, CS_atnum(1:CS_numat), CS_atcrg(1:CS_numat), &
+     &     CS_atdwf(1:CS_numat), CS_atocc(1:CS_numat), &
+     &     CS_atpos(1:3,1:CS_numat) )
+    !
+    ! write data to a slice file
+    sfil = trim(sslcfile)//"_"//trim(sslnum)//".sli"
+    !call EMS_SLI_save(trim(sfil),nx,ny,nv,CS_scsx,CS_scsy, &
+    !  & sdz,ht,slcdat,nerr)
+    if (nerr/=0) then
+      call CriticalError("Failed to write slice file.")
+    else
+      if (npps==1) then
+        call PostMessage("Projected potential data saved to file ["// &
+         & trim(sfil)//"].")
+      else
+        call PostMessage("Slice phase-grating data saved to file ["// &
+         & trim(sfil)//"].")
+      end if
+    end if
     
-  ! deallocate slice memory
-  call PostMessage("Deallocating slice memory.")
-  if (allocated(slcdat)) deallocate(slcdat,stat=nerr)
-  if (nerr/=0) call CriticalError("Failed to deallocate slice memory.")
+
+  end do
+
+  !$omp end parallel do
+
+  !$omp end parallel
+
   
   ! write slicing parameters to file
   ! * modified 2015-06-03 for single slice calculation mode
@@ -1513,6 +1538,14 @@ subroutine CEL2SLC()
     call writeslcprm(trim(sfil))
     if (nerr/=0) call CriticalError("Failed to save slice parameter file.")
   end if
+
+  !
+    ! deallocate slice memory
+    call PostMessage("Deallocating slice memory.")
+    if (allocated(slcdat)) deallocate(slcdat,stat=nerr)
+    if (nerr/=0) call CriticalError("Failed to deallocate slice memory.")
+
+  
   
   return
   
@@ -1542,56 +1575,56 @@ subroutine CEL2POT3D2SLC()
   complex*8, allocatable, dimension(:,:,:) :: slcdat
   real*4, external :: HT2WL
   
-    
-    ! generate scattering data
-    CS_useppot = 0 ! use 3d potentials and not projected potentials
-    call PostMessage("Preparing scattering amplitudes for all atom types.")
-    CS_absorptionprm = abf
-    call CS_PREPARE_SCATTAMPS(nx,ny,nz,ndwf,nabs+2*nabf,wl,nerr)
-    if (nerr/=0) call CriticalError("Failed to prepare scattering amplitudes")
-    call CS_GET_MEANINNERPOT(mpot, ht, nerr)
-    write(unit=smsg,fmt='(F10.5)') mpot
-    call PostMessage("Mean inner potential: "//trim(adjustl(smsg))//" V")
-    wl1 = HT2WL(ht+0.001*mpot)
-    write(unit=smsg,fmt='(F10.5)') wl1*1000.
-    call PostMessage("Wave length corrected for refraction: "//trim(adjustl(smsg))//" pm")
-    write(unit=smsg,fmt='(F10.5)') wl*1000.
-    call PostMessage("Wave length in vacuum               : "//trim(adjustl(smsg))//" pm")
-    
-    ! prepare slicing
-    call PostMessage("Distributing atoms in slices.")
-    call CS_SETSLICE_EQUIDIST(nz,nrev,nerr) ! only equidistant slicing for 3D potentials
-    if (nerr/=0) call CriticalError("Failed to distribute atoms in slices.")
- 
-    ! set absorption parameters
-    CS_useabsorption = 0
-    if (nabs/=0) CS_useabsorption = 1
-    
-    ! allocate potential memory
-    if (allocated(M3D_pot)) deallocate(M3D_pot, stat=nerr)
-    allocate(M3D_pot(nx,ny,nz), stat=nerr)
-    if (nerr/=0) call CriticalError("Failed to allocate slice memory.")
-    M3D_pot = cmplx(0.0,0.0)
-    M3D_n1 = nx
-    M3D_n2 = ny
-    M3D_n3 = nz
-    ! 
-    M3D_b1 = (/ sdx , 0.0 , 0.0 /)
-    M3D_b2 = (/ 0.0 , sdy , 0.0 /)
-    M3D_b3 = (/ 0.0 , 0.0 , sdz /)
-    !
-    call CS_GETCELL_POT(nx, ny, nz, nfl, ndwf, wl, M3D_pot, nerr)
-    if (nerr/=0) call CriticalError("Failed to create 3D potential.")
-        
-    allocate(slcdat(M3D_n1,M3D_n2,M3D_n3),stat=nerr)
-    if (nerr==0) then
-      ! dump the potential back to HD, remove the relativistic correction just for this
-      fcorr = 1.0 / ( 1.0 + ht / 510.9989 )
-      slcdat = M3D_pot*fcorr
-      call savedata1( "pot3d-2.dat", 2*M3D_n1*M3D_n2*M3D_n3, slcdat, nerr)
-      deallocate(slcdat,stat=nerr)
-    end if
-    
+
+  ! generate scattering data
+  CS_useppot = 0 ! use 3d potentials and not projected potentials
+  call PostMessage("Preparing scattering amplitudes for all atom types.")
+  CS_absorptionprm = abf
+  call CS_PREPARE_SCATTAMPS(nx,ny,nz,ndwf,nabs+2*nabf,wl,nerr)
+  if (nerr/=0) call CriticalError("Failed to prepare scattering amplitudes")
+  call CS_GET_MEANINNERPOT(mpot, ht, nerr)
+  write(unit=smsg,fmt='(F10.5)') mpot
+  call PostMessage("Mean inner potential: "//trim(adjustl(smsg))//" V")
+  wl1 = HT2WL(ht+0.001*mpot)
+  write(unit=smsg,fmt='(F10.5)') wl1*1000.
+  call PostMessage("Wave length corrected for refraction: "//trim(adjustl(smsg))//" pm")
+  write(unit=smsg,fmt='(F10.5)') wl*1000.
+  call PostMessage("Wave length in vacuum               : "//trim(adjustl(smsg))//" pm")
+
+  ! prepare slicing
+  call PostMessage("Distributing atoms in slices.")
+  call CS_SETSLICE_EQUIDIST(nz,nrev,nerr) ! only equidistant slicing for 3D potentials
+  if (nerr/=0) call CriticalError("Failed to distribute atoms in slices.")
+
+  ! set absorption parameters
+  CS_useabsorption = 0
+  if (nabs/=0) CS_useabsorption = 1
+
+  ! allocate potential memory
+  if (allocated(M3D_pot)) deallocate(M3D_pot, stat=nerr)
+  allocate(M3D_pot(nx,ny,nz), stat=nerr)
+  if (nerr/=0) call CriticalError("Failed to allocate slice memory.")
+  M3D_pot = cmplx(0.0,0.0)
+  M3D_n1 = nx
+  M3D_n2 = ny
+  M3D_n3 = nz
+  ! 
+  M3D_b1 = (/ sdx , 0.0 , 0.0 /)
+  M3D_b2 = (/ 0.0 , sdy , 0.0 /)
+  M3D_b3 = (/ 0.0 , 0.0 , sdz /)
+  !
+  call CS_GETCELL_POT(nx, ny, nz, nfl, ndwf, wl, M3D_pot, nerr)
+  if (nerr/=0) call CriticalError("Failed to create 3D potential.")
+
+  allocate(slcdat(M3D_n1,M3D_n2,M3D_n3),stat=nerr)
+  if (nerr==0) then
+    ! dump the potential back to HD, remove the relativistic correction just for this
+    fcorr = 1.0 / ( 1.0 + ht / 510.9989 )
+    slcdat = M3D_pot*fcorr
+    call savedata1( "pot3d-2.dat", 2*M3D_n1*M3D_n2*M3D_n3, slcdat, nerr)
+    deallocate(slcdat,stat=nerr)
+  end if
+
   !
   !
   ! --- make slices
@@ -1628,33 +1661,33 @@ subroutine POT3D2SLC()
   real*4 :: fz0, fz1, fcorr
   complex*8, allocatable, dimension(:,:,:) :: slcdat
   
+
+  ! allocate slice memory
+  call PostMessage("Allocating slice memory.")
+  allocate(slcdat(nx,ny,1),stat=nerr)
+  if (nerr/=0) call CriticalError("Failed to allocate slice memory.")
+  CS_useppot = 0 ! use 3d potentials and not projected potentials
+  ! (not really required here as we use external potentials)
+
+  ! set potential backup option
+  M3D_backup_slcpot = npot
+  fcorr = 1.0 / ( 1.0 + ht / 510.998928 ) ! relativistic correction, removal factor
+
+  ! creating phase gratings for all slices
+  do i=1, nz
+
+    ! handle single slice calculation mode, added 2015-06-03, JB
+    if (ssc>0 .and. i/=ssc) cycle ! skip all other slices in single slice calculation mode
     
-    ! allocate slice memory
-    call PostMessage("Allocating slice memory.")
-    allocate(slcdat(nx,ny,1),stat=nerr)
-    if (nerr/=0) call CriticalError("Failed to allocate slice memory.")
-    CS_useppot = 0 ! use 3d potentials and not projected potentials
-                   ! (not really required here as we use external potentials)
+    write(unit=sslnum,fmt='(I<ndigsl>.<ndigsl>)') i
+    sslnum = trim(adjustl(sslnum))
     
-    ! set potential backup option
-    M3D_backup_slcpot = npot
-    fcorr = 1.0 / ( 1.0 + ht / 510.998928 ) ! relativistic correction, removal factor
-    
-    ! creating phase gratings for all slices
-    do i=1, nz
-    
-      ! handle single slice calculation mode, added 2015-06-03, JB
-      if (ssc>0 .and. i/=ssc) cycle ! skip all other slices in single slice calculation mode
-    
-      write(unit=sslnum,fmt='(I<ndigsl>.<ndigsl>)') i
-      sslnum = trim(adjustl(sslnum))
-    
-      call PostMessage("Preparing slice "//trim(sslnum)//".")
-      !
-      ! setup slice title from 3D-potential filename
-      j = index(trim(scellfile),".",BACK=.TRUE.)
-      if (j<1) j = len_trim(scellfile)+1
-      k = index(trim(scellfile),"\",BACK=.TRUE.)
+    call PostMessage("Preparing slice "//trim(sslnum)//".")
+    !
+    ! setup slice title from 3D-potential filename
+    j = index(trim(scellfile),".",BACK=.TRUE.)
+    if (j<1) j = len_trim(scellfile)+1
+    k = index(trim(scellfile),"\",BACK=.TRUE.)
       if (k<1) k = index(trim(scellfile),"/",BACK=.TRUE.)
       if (k>j) then
         j = len_trim(scellfile)+1
@@ -1663,7 +1696,7 @@ subroutine POT3D2SLC()
       write(unit=stmp1, fmt='(I)') i
       write(unit=stmp2, fmt='(I)') nz
       EMS_SLI_data_title = scellfile(k+1:j-1)//" "// &
-     &     trim(adjustl(stmp1))//"/"//trim(adjustl(stmp2))
+      &     trim(adjustl(stmp1))//"/"//trim(adjustl(stmp2))
       call PostMessage("  "//trim(EMS_SLI_data_title))
       !
       ! calculate phase gratings
@@ -1675,7 +1708,7 @@ subroutine POT3D2SLC()
         slcdat(1:nx,1:ny,1) = M3D_slcpot(1:nx,1:ny)*fcorr ! rel. corr. removed
         EMS_SLI_data_ctype = 1 ! update the slice data type to potential
       end if
-    
+
       if (npot==1) then ! save potential backup
         sfil = trim(sslcfile)//"_"//trim(sslnum)//".pot"
         call savedatac8(trim(sfil), nx* ny, M3D_slcpot*fcorr, nerr)
@@ -1683,7 +1716,7 @@ subroutine POT3D2SLC()
           call PostWarning("Failed to write potential to file.")
         else
           call PostMessage("Proj. slice potential saved to file ["// &
-     &         trim(sfil)//"].")
+          &         trim(sfil)//"].")
         end if
       end if
       !
@@ -1701,9 +1734,9 @@ subroutine POT3D2SLC()
         !
         ! Prepare the atom table
         call EMS_SLI_settab1(fz0, fz1, nat, CS_slcatacc(1:nat,i), &
-     &     CS_numat, CS_atnum(1:CS_numat), CS_atcrg(1:CS_numat), &
-     &     CS_atdwf(1:CS_numat), CS_atocc(1:CS_numat), &
-     &     CS_atpos(1:3,1:CS_numat) )
+        &     CS_numat, CS_atnum(1:CS_numat), CS_atcrg(1:CS_numat), &
+        &     CS_atdwf(1:CS_numat), CS_atocc(1:CS_numat), &
+        &     CS_atpos(1:3,1:CS_numat) )
         !
         ! Store a slice title made from the slice composition
         call CS_GETSLICETITLE(i,EMS_SLI_data_title,nerr)
@@ -1718,21 +1751,21 @@ subroutine POT3D2SLC()
       ! write data to a slice file
       sfil = trim(sslcfile)//"_"//trim(sslnum)//".sli"
       call EMS_SLI_save(trim(sfil),nx,ny,nv,CS_scsx,CS_scsy, &
-     &                  sdz,ht,slcdat,nerr)
+      &                  sdz,ht,slcdat,nerr)
       if (nerr/=0) then
         call CriticalError("Failed to write slice file.")
       else
        if (npps==1) then
-          call PostMessage("Projected potential data saved to file ["// &
-           & trim(sfil)//"].")
-        else
-          call PostMessage("Slice phase-grating data saved to file ["// &
-           & trim(sfil)//"].")
-        end if
+        call PostMessage("Projected potential data saved to file ["// &
+        & trim(sfil)//"].")
+      else
+        call PostMessage("Slice phase-grating data saved to file ["// &
+        & trim(sfil)//"].")
       end if
-      !
-    end do
-    
+    end if
+    !
+  end do
+
   ! deallocate slice memory
   call PostMessage("Deallocating slice memory.")
   if (allocated(slcdat)) deallocate(slcdat,stat=nerr)

@@ -1,15 +1,15 @@
 # MAKEFILE for compiling and linking celslc
 # Defining variables
 f90comp = ifort
-switch3 = -nologo -O3 -p -g -debug all -recursive -132 -assume byterecl -threads -static-intel -qopenmp
-switch2 = -nologo -O2 -p -g -debug all -recursive -132 -assume byterecl -threads -static-intel -qopenmp
-switch1 = -nologo -O1 -p -g -debug all -recursive -132 -assume byterecl -threads -static-intel -qopenmp
-switch0 = -nologo -O0 -p -g -debug all -recursive -132 -assume byterecl -threads -static-intel -qopenmp
+switch3 = -nologo -fp-stack-check -O3 -qopenmp  -parallel -p -g -traceback -debug all -recursive -132 -assume byterecl -heap-arrays
+switch2 = -nologo -fp-stack-check -O2 -qopenmp  -parallel -p -g -traceback -debug all -recursive -132 -assume byterecl -heap-arrays
+switch1 = -nologo -fp-stack-check -O1 -qopenmp  -parallel -p -g -traceback -debug all -recursive -132 -assume byterecl -heap-arrays
+switch0 = -nologo -fp-stack-check -qopenmp -O0  -parallel -p -g -traceback -debug all -recursive -132 -assume byterecl -heap-arrays
 # removed switches
 #	 -libs:static ???
 # Start of the makefile
 celslc: binio2.o spacegroups.o symops.o cifio.o emsdata.o 3dpot.o AberrationFunctions.o CellSlicer.o fitfeprm.o fscatab.o FFTs.o wekoscatt.o wakiscatt.o integration.o levmrq.o random.o celslcsubs.o celslcprm.o celslc.o
-	$(f90comp) -o celslc -nologo binio2.o spacegroups.o symops.o cifio.o emsdata.o 3dpot.o AberrationFunctions.o CellSlicer.o fitfeprm.o fscatab.o FFTs.o wekoscatt.o wakiscatt.o integration.o levmrq.o random.o celslcsubs.o celslcprm.o celslc.o
+	$(f90comp) -g -fp-stack-check  -debug all  -heap-arrays -traceback -qopenmp  -parallel -o celslc -nologo binio2.o spacegroups.o symops.o cifio.o emsdata.o 3dpot.o AberrationFunctions.o CellSlicer.o fitfeprm.o fscatab.o FFTs.o wekoscatt.o wakiscatt.o integration.o levmrq.o random.o celslcsubs.o celslcprm.o celslc.o
 # Modules
 celslcprm.mod: celslcprm.o celslcprm.f90
 	$(f90comp) -c $(switch3) celslcprm.f90
@@ -30,7 +30,7 @@ AberrationFunctions.o: AberrationFunctions.f90
 CellSlicer.mod: fscatab.o CellSlicer.o CellSlicer.f90
 	$(f90comp) -c $(switch3) CellSlicer.f90
 CellSlicer.o: fscatab.o CellSlicer.f90
-	$(f90comp) -c $(switch3) CellSlicer.f90
+	$(f90comp) -c $(switch3) -qopenmp CellSlicer.f90
 fitfeprm.mod: fitfeprm.o fitfeprm.f90
 	$(f90comp) -c $(switch3) fitfeprm.f90
 fitfeprm.o: fitfeprm.f90
