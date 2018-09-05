@@ -1401,38 +1401,28 @@ subroutine CEL2SLC()
   CS_useabsorption = 0
   if (nabs/=0) CS_useabsorption = 1
   
-! allocate slice memory
-    call PostMessage("Allocating slice memory.")
-    allocate(slcdat(nx,ny,nv),stat=nerr)
-    if (nerr/=0) call CriticalError("Failed to allocate slice memory.")
+  ! allocate slice memory
+  call PostMessage("Allocating slice memory.")
+  allocate(slcdat(nx,ny,nv),stat=nerr)
+  if (nerr/=0) call CriticalError("Failed to allocate slice memory.")
 
   ! set potential backup option
   CS_backup_pot_flg = npot ! store potentials, we want to export them
   if (npps==1) CS_backup_pot_flg = 1 ! store potentials, we want to output them
- 
+
 
   ! creating phase gratings for all slices
-  !$omp parallel default(shared) private(i, j, k, nat, smsg, sfil, stmp1, stmp2, sslnum, svrnum, svrmax, fz0, fz1, mpot, slcdat )
 
-  omp_num_of_nodes = omp_get_num_procs()
+  !$OMP PARALLEL DO default(none) shared(CS_SLCATNUM, EMS_SLI_DATA_TITLE, npot, SSLCFILE, CS_SLCZLIM, CS_SCSZ, SDZ, CS_slcatacc, CS_NUMAT, CS_ATNUM, CS_ATCRG, nv, nx, ny, nz,ssc, nabs, nfl, ndwf,wl, EMS_SLI_data_ctype, npps, omp_num_of_nodes, CS_backup_pot, CS_ATDWF, CS_ATOCC, CS_ATPOS, CS_SCSX, CS_SCSY, ht) private(NERR,CS_WARN_NUM,i, j, k, nat, smsg, sfil, stmp1, stmp2, sslnum, svrnum, svrmax, fz0, fz1, mpot, slcdat )
+  do i=1, nz 
 
-  call omp_set_num_threads( omp_num_of_nodes )
-
-  print*, 'Number of threads available: ', omp_num_of_nodes
-
-  !$OMP PARALLEL DO 
-  do i=1, nz
-    
 
     ! handle single slice calculation mode, added 2015-06-03, JB
     if (ssc>0 .and. i/=ssc) cycle ! skip all other slices in single slice calculation mode
-    
+
     write(unit=sslnum,fmt='(I<ndigsl>.<ndigsl>)') i
 
 
-    !$OMP CRITICAL
-write(*,*) i, omp_get_thread_num()
-!$OMP END CRITICAL
     
     call PostMessage("Preparing slice "//trim(sslnum)//".")
     write(unit=smsg,fmt='("  ",I5," atoms.")') CS_slcatnum(i)
@@ -1499,6 +1489,10 @@ write(*,*) i, omp_get_thread_num()
     fz0 = CS_slczlim(1,i)/CS_scsz ! fractional slice z-offset
     fz1 = CS_slczlim(2,i)/CS_scsz ! fractional slice z-termination
     sdz = CS_slczlim(2,i) - CS_slczlim(1,i) ! slice thickness in nm
+
+
+    !$OMP CRITICAL
+
     !
     call EMS_SLI_settab1(fz0, fz1, nat, CS_slcatacc(1:nat,i), &
      &     CS_numat, CS_atnum(1:CS_numat), CS_atcrg(1:CS_numat), &
@@ -1507,8 +1501,8 @@ write(*,*) i, omp_get_thread_num()
     !
     ! write data to a slice file
     sfil = trim(sslcfile)//"_"//trim(sslnum)//".sli"
-    !call EMS_SLI_save(trim(sfil),nx,ny,nv,CS_scsx,CS_scsy, &
-    !  & sdz,ht,slcdat,nerr)
+    call EMS_SLI_save(trim(sfil),nx,ny,nv,CS_scsx,CS_scsy, &
+      & sdz,ht,slcdat,nerr)
     if (nerr/=0) then
       call CriticalError("Failed to write slice file.")
     else
@@ -1521,12 +1515,12 @@ write(*,*) i, omp_get_thread_num()
       end if
     end if
     
+    !$OMP END CRITICAL
 
   end do
 
   !$omp end parallel do
 
-  !$omp end parallel
 
   
   ! write slicing parameters to file
@@ -1540,10 +1534,10 @@ write(*,*) i, omp_get_thread_num()
   end if
 
   !
-    ! deallocate slice memory
-    call PostMessage("Deallocating slice memory.")
-    if (allocated(slcdat)) deallocate(slcdat,stat=nerr)
-    if (nerr/=0) call CriticalError("Failed to deallocate slice memory.")
+  ! deallocate slice memory
+  call PostMessage("Deallocating slice memory.")
+  if (allocated(slcdat)) deallocate(slcdat,stat=nerr)
+  if (nerr/=0) call CriticalError("Failed to deallocate slice memory.")
 
   
   
