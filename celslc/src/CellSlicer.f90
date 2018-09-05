@@ -5015,7 +5015,6 @@ subroutine CS_GETSLICE_POT2(nslc, nx, ny, nrx, nry, nfl, ndw, wl, pot, nerr)
   ia2 = 0
   !
   call CS_PROG_START(na,1.0)
-  !$OMP PARALLEL
   !$omp parallel do reduction(+:lcw)
   do ia=1, na ! loop ia over all atoms in slice
     !
@@ -5069,7 +5068,6 @@ subroutine CS_GETSLICE_POT2(nslc, nx, ny, nrx, nry, nfl, ndw, wl, pot, nerr)
       !
   end do ! loop ia over all atoms in slice
   !$omp end parallel do
-  !$OMP END PARALLEL
 
   call CS_PROG_STOP(na)
   !
